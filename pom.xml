@@ -32,6 +32,12 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+            <dependency>
+                <groupId>io.netty</groupId>
+                <artifactId>netty-resolver-dns-native-macos</artifactId>
+                <version>4.1.107.Final</version>
+                <classifier>osx-aarch_64</classifier>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
