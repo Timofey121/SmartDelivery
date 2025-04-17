@@ -1,10 +1,10 @@
-package com.timofey.eurekaservice;
+package com.timofey.userservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EurekaServiceApplicationTests {
+class UserServiceApplicationTests {
 
     @Test
     void contextLoads() {
