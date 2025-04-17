@@ -1,0 +1,21 @@
+server:
+  port: 8761
+
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5433/SmartDelivery
+    username: timofey
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+    show-sql: true
+
+jwt:
+  secret: 984hg493gh0439rthr0429uruj2309yh937gc763fe87t3f89723gf
+  lifetime: 10m
