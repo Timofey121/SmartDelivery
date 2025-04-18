@@ -35,8 +35,7 @@ SmartDelivery — набор Spring Boot микросервисов, обесп�
 | auth-service         | 8762 | Регистрация, логин, JWT                 |
 | user-service         | 8763 | Профили пользователей, курьеров         |
 | order-service        | 8765 | Создание и получение заказов            |
-| delivery-service     | 8766 | Назначение курьеров, статус доставки    |
-| notification-service | 8767 | Отправка уведомлений (RabbitMQ consumer)|
+| notification-service | 8764 | Отправка уведомлений (RabbitMQ consumer)|
 
 ## 🚀 Быстрый старт
 
@@ -93,13 +92,6 @@ docker-compose up -d
 - Запустить все тесты:
 ```bash
 mvn test
-```
-
-## 🚚 Docker
-- Каждый модуль имеет `Dockerfile`.
-- При сборке:
-```bash
-mvn spring-boot:build-image -Dspring-boot.build-image.imageName=timofey/smartdelivery-<module>
 ```
 
 ## 👨‍💻 Вклад
