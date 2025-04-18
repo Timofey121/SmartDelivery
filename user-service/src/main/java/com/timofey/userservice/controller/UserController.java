@@ -20,8 +20,8 @@ public class UserController {
         return userService.getProfile(authentication.getName());
     }
 
-    @GetMapping("/couriers")
+    @GetMapping()
     public List<UserResponse> getCouriers() {
-        return userService.getAllCouriers();
+        return userService.getAllUsers();
     }
 }

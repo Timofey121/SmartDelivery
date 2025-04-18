@@ -22,8 +22,8 @@ public class UserService {
         return userMapper.UserToUserResponse(user);
     }
 
-    public List<UserResponse> getAllCouriers() {
-        return userRepository.findByRole("ROLE_COURIER").stream()
+    public List<UserResponse> getAllUsers() {
+        return userRepository.findAll().stream()
                 .map(userMapper::UserToUserResponse).toList();
     }
 }
