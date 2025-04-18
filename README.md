@@ -84,6 +84,6 @@ cd notification-service && mvn spring-boot:run
 2. Создавай ветку `feature/...` или `bugfix/...`
 3. Пушь и открывай PR
 
-## 📜 Лицензия
-MIT © Timofey
 
+> **Контакты**  
+> Timofey121 — ale3jurtaev@gmail.com  
