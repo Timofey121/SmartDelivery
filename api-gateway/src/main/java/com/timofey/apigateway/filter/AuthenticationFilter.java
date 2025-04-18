@@ -24,7 +24,7 @@ import java.util.List;
 @Slf4j
 public class AuthenticationFilter implements GlobalFilter, Ordered {
 
-    private static final List<String> SECURED_PATHS = List.of("/users");
+    private static final List<String> SECURED_PATHS = List.of("/users", "/notifications");
     private static final List<String> PUBLIC_PATHS = List.of("/auth");
 
     @Value("${jwt.secret}")
