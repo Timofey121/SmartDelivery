@@ -13,7 +13,6 @@ SmartDelivery — набор Spring Boot микросервисов, обесп�
 - **Auth Service** — аутентификация/авторизация (JWT)
 - **User Service** — управление пользователями и курьерами
 - **Order Service** — создание и просмотр заказов
-- **Delivery Service** — назначение курьеров и обновление статуса доставки
 - **Notification Service** — отправка уведомлений через RabbitMQ
 
 ## 🔧 Технологии
@@ -23,7 +22,6 @@ SmartDelivery — набор Spring Boot микросервисов, обесп�
 - Spring Security + JWT (jjwt)
 - Spring Data JPA, H2 (dev) / PostgreSQL (prod)
 - RabbitMQ
-- Docker, Docker Compose
 - Lombok, Hibernate Validator
 
 ## 📦 Модули проекта
@@ -58,15 +56,8 @@ mvn clean install -DskipTests
 cd auth-service && mvn spring-boot:run
 cd user-service && mvn spring-boot:run
 cd order-service && mvn spring-boot:run
-cd delivery-service && mvn spring-boot:run
 cd notification-service && mvn spring-boot:run
 ```
-
-### 4. Запуск через Docker Compose
-```bash
-docker-compose up -d
-```
-> В `docker-compose.yml` описаны: Eureka, Gateway, все сервисы, RabbitMQ, PostgreSQL.
 
 ## ⚙️ Конфигурация
 Конфигурационные файлы (`application.yml`) каждого сервиса находятся в соответствующих модулях. Основные параметры:
@@ -74,6 +65,7 @@ docker-compose up -d
 - `spring.application.name`
 - Настройки JWT (`jwt.secret`, `jwt.expiration`)
 - Настройки RabbitMQ (`spring.rabbitmq.*`)
+- Настройки Postgresql (`spring.datasource.*`)
 - Порты сервисов
 
 ## 🎯 Endpoints (пример)
@@ -86,13 +78,6 @@ docker-compose up -d
 - `POST /orders` — создать заказ
 - `GET /orders/{id}` — получить заказ по ID
 
-
-## 🛠️ Тестирование
-- В проекте настроены unit и integration тесты (JUnit 5, Mockito).
-- Запустить все тесты:
-```bash
-mvn test
-```
 
 ## 👨‍💻 Вклад
 1. Форкай репозиторий
