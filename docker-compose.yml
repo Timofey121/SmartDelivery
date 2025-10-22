@@ -1,0 +1,122 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:13
+    container_name: smartdelivery-postgres
+    environment:
+      POSTGRES_DB: SmartDelivery
+      POSTGRES_USER: timofey
+      POSTGRES_PASSWORD: password
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - smartdelivery-network
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: smartdelivery-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    networks:
+      - smartdelivery-network
+
+  eureka-server:
+    build: ./eureka-service
+    container_name: smartdelivery-eureka
+    ports:
+      - "8761:8761"
+    networks:
+      - smartdelivery-network
+    depends_on:
+      - postgres
+
+  api-gateway:
+    build: ./api-gateway
+    container_name: smartdelivery-gateway
+    ports:
+      - "8080:8080"
+    networks:
+      - smartdelivery-network
+    depends_on:
+      - eureka-server
+
+  auth-service:
+    build: ./auth-service
+    container_name: smartdelivery-auth
+    ports:
+      - "8762:8762"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/SmartDelivery
+      SPRING_DATASOURCE_USERNAME: timofey
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - smartdelivery-network
+    depends_on:
+      - postgres
+      - eureka-server
+
+  user-service:
+    build: ./user-service
+    container_name: smartdelivery-user
+    ports:
+      - "8763:8763"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/SmartDelivery
+      SPRING_DATASOURCE_USERNAME: timofey
+      SPRING_DATASOURCE_PASSWORD: password
+    networks:
+      - smartdelivery-network
+    depends_on:
+      - postgres
+      - eureka-server
+
+  order-service:
+    build: ./order-service
+    container_name: smartdelivery-order
+    ports:
+      - "8765:8765"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/SmartDelivery
+      SPRING_DATASOURCE_USERNAME: timofey
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_RABBITMQ_HOST: rabbitmq
+    networks:
+      - smartdelivery-network
+    depends_on:
+      - postgres
+      - rabbitmq
+      - eureka-server
+
+  notification-service:
+    build: ./notification-service
+    container_name: smartdelivery-notification
+    ports:
+      - "8764:8764"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/SmartDelivery
+      SPRING_DATASOURCE_USERNAME: timofey
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_RABBITMQ_HOST: rabbitmq
+    networks:
+      - smartdelivery-network
+    depends_on:
+      - postgres
+      - rabbitmq
+      - eureka-server
+
+volumes:
+  postgres_data:
+  rabbitmq_data:
+
+networks:
+  smartdelivery-network:
+    driver: bridge

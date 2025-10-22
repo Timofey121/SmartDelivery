@@ -19,32 +19,32 @@
     </properties>
 
     <dependencies>
-        <!-- Spring Boot Starter Web для веб-приложений -->
+        <!-- Spring Boot Starter Web for web applications -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!-- Spring Cloud для Eureka -->
+        <!-- Spring Cloud for Eureka -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-server</artifactId>
         </dependency>
 
-        <!-- Spring Boot Starter Actuator (для мониторинга и управления приложением) -->
+        <!-- Spring Boot Starter Actuator (for monitoring and application management) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!-- Spring Boot Starter for Configuration Processor (если необходимо) -->
+        <!-- Spring Boot Starter for Configuration Processor (if needed) -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
             <optional>true</optional>
         </dependency>
 
-        <!-- Spring Boot Starter for Lombok (если используете lombok) -->
+        <!-- Spring Boot Starter for Lombok (if you use lombok) -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
